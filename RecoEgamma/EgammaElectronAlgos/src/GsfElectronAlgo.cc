@@ -1042,10 +1042,9 @@ void GsfElectronAlgo::createElectron(reco::GsfElectronCollection& electrons,
     conversionVars.vtxFitProb = ConversionTools::getVtxFitProb(matchedConv);
   }
   if (conversionInfo.conversionPartnerCtfTkIdx) {
-    conversionVars.partner = TrackBaseRef(reco::TrackRef(ctfTracks, conversionInfo.conversionPartnerCtfTkIdx.value()));
+    conversionVars.partner = reco::TrackPtr(ctfTracks, conversionInfo.conversionPartnerCtfTkIdx.value());
   } else if (conversionInfo.conversionPartnerGsfTkIdx) {
-    conversionVars.partner =
-        TrackBaseRef(reco::GsfTrackRef(eventData.originalGsfTracks, conversionInfo.conversionPartnerGsfTkIdx.value()));
+    conversionVars.partner = reco::TrackPtr(eventData.originalGsfTracks, conversionInfo.conversionPartnerGsfTkIdx.value());
   }
 
   //====================================================

@@ -136,7 +136,13 @@ GsfElectron::GsfElectron(const GsfElectron& electron,
       pixelMatchVariables_(electron.pixelMatchVariables_) {
   trackClusterMatching_.electronCluster = electronCluster;
   //closestCtfTrack_.ctfTrack = closestCtfTrack ;
-  conversionRejection_.partner = conversionPartner;
+  auto& ref = conversionPartner;
+  edm::EDProductGetter const* getter = ref.productGetter();
+  if (getter) {
+    conversionRejection_.partner = TrackPtr(ref.id(), ref.key(), getter);
+  } else {
+    conversionRejection_.partner = TrackPtr(ref.id(), ref.get(), ref.key());
+  }
   //assert(closestCtfTrack==core->ctfTrack()) ;
   //assert(electron.core()->ctfGsfOverlap()==core->ctfGsfOverlap()) ;
   // TO BE DONE

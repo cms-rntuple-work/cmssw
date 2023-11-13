@@ -176,7 +176,25 @@
    <version ClassVersion="11" checksum="1799511018"/>
    <version ClassVersion="10" checksum="4260674990"/>
   </class>
-  <class name="reco::GsfElectron::ConversionRejection" ClassVersion="11">
+  <class name="reco::GsfElectron::ConversionRejection" ClassVersion="12">
+   <version ClassVersion="12" checksum="2742251964"/>
+  <ioread sourceClass="reco::GsfElectron::ConversionRejection" version="[1-11]" source="reco::TrackBaseRef partner" targetClass="reco::GsfElectron::ConversionRejection" target="partner">
+    <![CDATA[
+    auto& ref = onfile.partner;
+    if ( ref.isNull() ) {
+      partner = reco::TrackPtr();
+    } else {
+      edm::EDProductGetter const* getter = ref.productGetter();
+      if (getter) {
+        std::cout<<"yes TrackBaseRef getter\n";
+        partner = reco::TrackPtr(ref.id(), ref.key(), getter);
+      } else {
+        std::cout<<"no TrackBaseRef getter\n";
+        partner = reco::TrackPtr(ref.id(), static_cast<const reco::Track*>(nullptr), ref.key());
+      }
+    }
+    ]]>
+   </ioread>
    <version ClassVersion="11" checksum="2813508647"/>
    <version ClassVersion="10" checksum="190549577"/>
   </class>

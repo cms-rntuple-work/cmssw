@@ -25,8 +25,15 @@ TriggerObject::TriggerObject(const reco::LeafCandidate& leafCand) : reco::LeafCa
 
 // Constructors from base candidate reference (for 'l1extra' particles)
 TriggerObject::TriggerObject(const reco::CandidateBaseRef& candRef)
-    : reco::LeafCandidate(*candRef), refToOrig_(candRef) {
+    : reco::LeafCandidate(*candRef) {
   triggerObjectTypes_.clear();
+  auto& ref = candRef;
+  edm::EDProductGetter const* getter = ref.productGetter();
+  if (getter) {
+    refToOrig_ = reco::CandidatePtr(ref.id(), ref.key(), getter);
+  } else {
+    refToOrig_ = reco::CandidatePtr(ref.id(), ref.get(), ref.key());
+  }
 }
 
 // Constructors from Lorentz-vectors and (optional) PDG ID
@@ -79,56 +86,3 @@ bool TriggerObject::hasTriggerObjectType(trigger::TriggerObjectType triggerObjec
   return false;
 }
 
-// Special methods for 'l1extra' particles
-
-// Getters specific to the 'l1extra' particle types
-// Exceptions of type 'edm::errors::InvalidReference' are thrown,
-// if wrong particle type is requested
-
-// EM
-const l1extra::L1EmParticleRef TriggerObject::origL1EmRef() const {
-  l1extra::L1EmParticleRef l1Ref;
-  try {
-    l1Ref = origObjRef().castTo<l1extra::L1EmParticleRef>();
-  } catch (edm::Exception const& X) {
-    if (X.categoryCode() != edm::errors::InvalidReference)
-      throw X;
-  }
-  return l1Ref;
-}
-
-// EtMiss
-const l1extra::L1EtMissParticleRef TriggerObject::origL1EtMissRef() const {
-  l1extra::L1EtMissParticleRef l1Ref;
-  try {
-    l1Ref = origObjRef().castTo<l1extra::L1EtMissParticleRef>();
-  } catch (edm::Exception const& X) {
-    if (X.categoryCode() != edm::errors::InvalidReference)
-      throw X;
-  }
-  return l1Ref;
-}
-
-// Jet
-const l1extra::L1JetParticleRef TriggerObject::origL1JetRef() const {
-  l1extra::L1JetParticleRef l1Ref;
-  try {
-    l1Ref = origObjRef().castTo<l1extra::L1JetParticleRef>();
-  } catch (edm::Exception const& X) {
-    if (X.categoryCode() != edm::errors::InvalidReference)
-      throw X;
-  }
-  return l1Ref;
-}
-
-// Muon
-const l1extra::L1MuonParticleRef TriggerObject::origL1MuonRef() const {
-  l1extra::L1MuonParticleRef l1Ref;
-  try {
-    l1Ref = origObjRef().castTo<l1extra::L1MuonParticleRef>();
-  } catch (edm::Exception const& X) {
-    if (X.categoryCode() != edm::errors::InvalidReference)
-      throw X;
-  }
-  return l1Ref;
-}
