@@ -1,6 +1,7 @@
 <lcgdict>
 
-   <class name="reco::PFCandidate" ClassVersion="21">
+   <class name="reco::PFCandidate" ClassVersion="22">
+    <version ClassVersion="22" checksum="899761435"/>
     <version ClassVersion="21" checksum="3100624205"/>
     <version ClassVersion="20" checksum="2748489940"/>
     <version ClassVersion="19" checksum="2990582232"/>
@@ -55,7 +56,8 @@
   <class name="edm::PtrVector<reco::PFCandidate> "/>
   <class name="edm::Wrapper<edm::PtrVector<reco::PFCandidate> >"/>
 
-  <class name="reco::IsolatedPFCandidate"  ClassVersion="17">
+  <class name="reco::IsolatedPFCandidate"  ClassVersion="18">
+   <version ClassVersion="18" checksum="250738812"/>
    <version ClassVersion="17" checksum="3951723310"/>
    <version ClassVersion="16" checksum="2274533749"/>
    <version ClassVersion="15" checksum="3042264953"/>
@@ -72,7 +74,8 @@
   <class name="reco::IsolatedPFCandidateRefVector"/>
   <class name="reco::IsolatedPFCandidatePtr"/>
 
-  <class name="reco::PileUpPFCandidate"  ClassVersion="17">
+  <class name="reco::PileUpPFCandidate"  ClassVersion="18">
+   <version ClassVersion="18" checksum="3675104489"/>
    <version ClassVersion="17" checksum="1635014507"/>
    <version ClassVersion="16" checksum="3331568330"/>
    <version ClassVersion="15" checksum="953549166"/>
