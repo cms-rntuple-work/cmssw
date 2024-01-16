@@ -626,7 +626,7 @@ namespace reco {
   public:
     struct ConversionRejection {
       int flags;             // -max:not-computed, other: as computed by Puneeth conversion code
-      TrackBaseRef partner;  // conversion partner
+      TrackPtr partner;  // conversion partner
       float dist;            // distance to the conversion partner
       float dcot;            // difference of cot(angle) with the conversion partner track
       float radius;          // signed conversion radius
@@ -641,7 +641,7 @@ namespace reco {
 
     // accessors
     int convFlags() const { return conversionRejection_.flags; }
-    TrackBaseRef convPartner() const { return conversionRejection_.partner; }
+    TrackPtr convPartner() const { return conversionRejection_.partner; }
     float convDist() const { return conversionRejection_.dist; }
     float convDcot() const { return conversionRejection_.dcot; }
     float convRadius() const { return conversionRejection_.radius; }
