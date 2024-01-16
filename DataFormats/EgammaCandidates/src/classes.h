@@ -35,6 +35,7 @@
 #include "DataFormats/Common/interface/AssociationMap.h"
 #include "DataFormats/Common/interface/Ptr.h"
 #include "DataFormats/Common/interface/PtrVector.h"
+#include "DataFormats/Common/interface/RefToBaseToPtr_ioread.h"
 #include "DataFormats/Common/interface/ValueMap.h"
 #include "Rtypes.h"
 #include "Math/Cartesian3D.h"

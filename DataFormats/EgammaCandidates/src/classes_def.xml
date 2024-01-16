@@ -176,7 +176,11 @@
    <version ClassVersion="11" checksum="1799511018"/>
    <version ClassVersion="10" checksum="4260674990"/>
   </class>
-  <class name="reco::GsfElectron::ConversionRejection" ClassVersion="11">
+  <class name="reco::GsfElectron::ConversionRejection" ClassVersion="12">
+   <version ClassVersion="12" checksum="2742251964"/>
+  <ioread sourceClass="reco::GsfElectron::ConversionRejection" version="[1-11]" source="reco::TrackBaseRef partner" targetClass="reco::GsfElectron::ConversionRejection" target="partner">
+    <![CDATA[ partner = edm::refToBaseToPtr_ioread(onfile.partner); ]]>
+   </ioread>
    <version ClassVersion="11" checksum="2813508647"/>
    <version ClassVersion="10" checksum="190549577"/>
   </class>

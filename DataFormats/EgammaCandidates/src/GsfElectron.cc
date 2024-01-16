@@ -2,6 +2,7 @@
 #include "DataFormats/GsfTrackReco/interface/GsfTrack.h"
 #include "DataFormats/EgammaReco/interface/BasicCluster.h"
 #include "DataFormats/EgammaReco/interface/BasicClusterFwd.h"
+#include "DataFormats/Common/interface/RefToBaseToPtr.h"
 
 using namespace reco;
 
@@ -136,7 +137,7 @@ GsfElectron::GsfElectron(const GsfElectron& electron,
       pixelMatchVariables_(electron.pixelMatchVariables_) {
   trackClusterMatching_.electronCluster = electronCluster;
   //closestCtfTrack_.ctfTrack = closestCtfTrack ;
-  conversionRejection_.partner = conversionPartner;
+  conversionRejection_.partner = edm::refToBaseToPtr(conversionPartner);
   //assert(closestCtfTrack==core->ctfTrack()) ;
   //assert(electron.core()->ctfGsfOverlap()==core->ctfGsfOverlap()) ;
   // TO BE DONE
