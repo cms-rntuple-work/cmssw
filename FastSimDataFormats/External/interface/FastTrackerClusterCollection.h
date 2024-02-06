@@ -7,6 +7,13 @@
 #include "DataFormats/Common/interface/ClonePolicy.h"
 #include "DataFormats/Common/interface/OwnVector.h"
 
+namespace edm::detail {
+  template<>
+    struct RangeMapContainer<edm::OwnVector<FastTrackerCluster>> {
+    using type = edm::OwnVector<FastTrackerCluster>;
+  };
+}
+
 typedef edm::RangeMap<unsigned, edm::OwnVector<FastTrackerCluster> > FastTrackerClusterCollection;
 
 #endif
