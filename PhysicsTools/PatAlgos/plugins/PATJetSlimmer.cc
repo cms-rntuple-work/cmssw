@@ -106,7 +106,6 @@ void pat::PATJetSlimmer::produce(edm::Event& iEvent, const edm::EventSetup& iSet
 
     if (dropTagInfos_(*it)) {
       jet.tagInfoLabels_.clear();
-      jet.tagInfos_.clear();
       jet.tagInfosFwdPtr_.clear();
     }
     if (dropJetVars_(*it)) {
